@@ -1,16 +1,8 @@
 package symbolics.division.meret.mixin.client;
 
-import dev.doublekekse.area_lib.data.AreaClientData;
-import dev.doublekekse.area_lib.data.AreaSavedData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.Music;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.JukeboxSong;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

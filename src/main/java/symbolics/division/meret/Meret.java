@@ -24,8 +24,15 @@ public class Meret implements ModInitializer {
 	}
 
 	public static final class OVERRIDES {
-		public static final ResourceLocation INDUSTRIAL_ID = ResourceLocation.fromNamespaceAndPath("mf121_music", "music.chrono_stereo");
-		public static final SoundEvent INDUSTRIAL = SoundEvent.createVariableRangeEvent(INDUSTRIAL_ID);
+//		public static final ResourceLocation STONE_ID = ResourceLocation.fromNamespaceAndPath(MF_ID, "override.industrial");
+//		public static final SoundEvent STONE = SoundEvent.createVariableRangeEvent(STONE_ID);
+//		public static final ResourceLocation IRON_ID = ResourceLocation.fromNamespaceAndPath(MF_ID, "override.industrial");
+//		public static final SoundEvent IRON = SoundEvent.createVariableRangeEvent(IRON_ID);
+//		public static final ResourceLocation INDUSTRIAL_ID = ResourceLocation.fromNamespaceAndPath(MF_ID, "override.industrial");
+//		public static final SoundEvent INDUSTRIAL = SoundEvent.createVariableRangeEvent(INDUSTRIAL_ID);
+//		public static final ResourceLocation INFO_ID = ResourceLocation.fromNamespaceAndPath(MF_ID, "override.industrial");
+//		public static final SoundEvent INFO = SoundEvent.createVariableRangeEvent(INFO_ID);
+
 	}
 
 	@Override
@@ -34,7 +41,7 @@ public class Meret implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		Registry.register(BuiltInRegistries.SOUND_EVENT, OVERRIDES.INDUSTRIAL_ID, OVERRIDES.INDUSTRIAL);
+//		Registry.register(BuiltInRegistries.SOUND_EVENT, OVERRIDES.INDUSTRIAL_ID, OVERRIDES.INDUSTRIAL);
 //		Registry.register(Registries.SOUND_EVENT, OVERRIDES.INDUSTRIAL_ID, OVERRIDES.INDUSTRIAL);
 
 	}

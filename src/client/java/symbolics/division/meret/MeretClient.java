@@ -29,10 +29,7 @@ public class MeretClient implements ClientModInitializer {
 
 		if (potentialArea == null) return null;
 
-		System.out.println("found area " + potentialArea.id().toString());
-
 		Registry<JukeboxSong> songRegistry =  player.level().registryAccess().registry(Registries.JUKEBOX_SONG).orElse(null);
-		Registry<SoundEvent> soundRegistry = player.level().registryAccess().registry(Registries.SOUND_EVENT).orElse(null);
 
 		if (songRegistry == null) return null;
 
@@ -41,20 +38,11 @@ public class MeretClient implements ClientModInitializer {
 				potentialArea.id()
 		);
 
-		TagKey<SoundEvent> soundTag = TagKey.create(
-				Registries.SOUND_EVENT,
-				potentialArea.id()
-		);
-
-		HolderSet.Named<SoundEvent> taggedSoundHolders = soundRegistry.getOrCreateTag(soundTag);
-
 		HolderSet.Named<JukeboxSong> taggedHolders = songRegistry.getOrCreateTag(musicTag);
 		Holder<JukeboxSong> song = taggedHolders.getRandomElement(player.getRandom()).orElse(null);
-		Holder<SoundEvent> soundSong = taggedSoundHolders.getRandomElement(player.getRandom()).orElse(null);
 
-		if (soundSong == null) return null;
+		if (song == null) return null;
 
-		// vanilla game music values
-		return new Music(soundSong, 300, 300, false);
+		return new Music(song.value().soundEvent(), 300, 300, false);
 	}
 }
