@@ -9,6 +9,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.Music;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.JukeboxSong;
 import org.jetbrains.annotations.Nullable;
@@ -31,6 +32,7 @@ public class MeretClient implements ClientModInitializer {
 		System.out.println("found area " + potentialArea.id().toString());
 
 		Registry<JukeboxSong> songRegistry =  player.level().registryAccess().registry(Registries.JUKEBOX_SONG).orElse(null);
+		Registry<SoundEvent> soundRegistry = player.level().registryAccess().registry(Registries.SOUND_EVENT).orElse(null);
 
 		if (songRegistry == null) return null;
 
@@ -39,11 +41,20 @@ public class MeretClient implements ClientModInitializer {
 				potentialArea.id()
 		);
 
+		TagKey<SoundEvent> soundTag = TagKey.create(
+				Registries.SOUND_EVENT,
+				potentialArea.id()
+		);
+
+		HolderSet.Named<SoundEvent> taggedSoundHolders = soundRegistry.getOrCreateTag(soundTag);
+
 		HolderSet.Named<JukeboxSong> taggedHolders = songRegistry.getOrCreateTag(musicTag);
 		Holder<JukeboxSong> song = taggedHolders.getRandomElement(player.getRandom()).orElse(null);
-		if (song == null) return null;
+		Holder<SoundEvent> soundSong = taggedSoundHolders.getRandomElement(player.getRandom()).orElse(null);
+
+		if (soundSong == null) return null;
 
 		// vanilla game music values
-		return new Music(song.value().soundEvent(), 300, 300, false);
+		return new Music(soundSong, 300, 300, false);
 	}
 }
