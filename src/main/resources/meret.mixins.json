@@ -3,7 +3,6 @@
 	"package": "symbolics.division.meret.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
