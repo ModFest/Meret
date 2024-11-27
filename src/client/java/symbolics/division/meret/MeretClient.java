@@ -9,7 +9,6 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.Music;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.JukeboxSong;
 import org.jetbrains.annotations.Nullable;
@@ -43,6 +42,6 @@ public class MeretClient implements ClientModInitializer {
 
 		if (song == null) return null;
 
-		return new Music(song.value().soundEvent(), 300, 300, false);
+		return new Music(song.value().soundEvent(), 20 * 3 * 60, 20 * 5  * 60, false);
 	}
 }
