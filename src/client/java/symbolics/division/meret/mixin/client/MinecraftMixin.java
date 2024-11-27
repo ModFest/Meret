@@ -2,7 +2,9 @@ package symbolics.division.meret.mixin.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.Music;
+import net.minecraft.sounds.SoundEvents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,8 +23,12 @@ public class MinecraftMixin {
     )
     public void modifyGetSituationalMusic(CallbackInfoReturnable<Music> ci) {
         Music override = MeretClient.getOverride(this.player);
-        if (override == null) return;
-        ci.setReturnValue(override);
+        if (override == null) {
+            // override vanilla music always
+            ci.setReturnValue(new Music(Holder.direct(SoundEvents.EMPTY), 10, 10, false));
+        } else {
+            ci.setReturnValue(override);
+        }
         ci.cancel();
     }
 }
