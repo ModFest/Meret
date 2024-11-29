@@ -44,32 +44,13 @@ public class MeretClient implements ClientModInitializer {
 			return null;
 		}
 
-		var songTags = songRegistry.getTagNames().toList();
-
-
-//		for (var tag : songTags)  {
-//			Area area = AreaClientData.getClientLevelData().get(tag.location());
-//			if (area != null && area.contains(player))
-//				queue.enqueue(area);
-//		}
-
-//		return null;
-//		if (queue.isEmpty()) return null;
-
-//		songRegistry.getOrCreateTag()
-
-
-
 		// sorry jasmine  (´・ω・`)
 		return songRegistry.getTagNames()
                 .map(tag -> new Pair<>(tag, AreaClientData.getClientLevelData().get(tag.location())))
                 .filter(p -> p.getSecond() != null && p.getSecond().contains(player))
 				.max(Comparator.comparingInt(p -> p.getSecond().getPriority()))
 				.flatMap(p -> songRegistry.getOrCreateTag(p.getFirst()).getRandomElement(player.getRandom()))
-				.map(song -> new Music(song.value().soundEvent(), 10, 10, false))
+				.map(song -> new Music(song.value().soundEvent(), 20 * 3 * 60, 20 * 5 * 60, false))
 				.orElse(null);
-
-//		return new Music(song.value().soundEvent(), 10, 10, false);
-////		return new Music(song.value().soundEvent(), 20 * 3 * 60, 20 * 5  * 60, false);
 	}
 }
