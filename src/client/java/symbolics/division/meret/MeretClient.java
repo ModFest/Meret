@@ -1,24 +1,16 @@
 package symbolics.division.meret;
 
 import com.mojang.datafixers.util.Pair;
-import dev.doublekekse.area_lib.Area;
 import dev.doublekekse.area_lib.data.AreaClientData;
-import dev.doublekekse.area_lib.data.AreaSavedData;
-import it.unimi.dsi.fastutil.PriorityQueue;
-import it.unimi.dsi.fastutil.objects.ObjectArrayPriorityQueue;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.Music;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.JukeboxSong;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Comparator;
-import java.util.Objects;
 
 public class MeretClient implements ClientModInitializer {
 	@Override
@@ -29,13 +21,6 @@ public class MeretClient implements ClientModInitializer {
 	@Nullable
 	public static Music getOverride(LocalPlayer player) {
 		if (player == null) return null;
-
-		Area[] areas = AreaClientData.getClientLevelData().getAreas().toArray(Area[]::new);
-
-		PriorityQueue<Area> queue = new ObjectArrayPriorityQueue<>(areas.length, Comparator.comparingInt(Area::getPriority));
-//		for (Area potentialArea : areas) {
-//			queue.enqueue(potentialArea);
-//		}
 
 		Registry<JukeboxSong> songRegistry =  player.level().registryAccess().registry(Registries.JUKEBOX_SONG).orElse(null);
 
