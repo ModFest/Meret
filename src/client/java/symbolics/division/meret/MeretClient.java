@@ -34,9 +34,10 @@ public class MeretClient implements ClientModInitializer {
 
         AreaSavedData areaSavedData = AreaClientData.getClientLevelData();
         Area silentArea = areaSavedData.get(Meret.id("silent"));
+        int silentPriority = 0;
 
         if (silentArea != null && silentArea.contains(player)) {
-            return null;
+            silentPriority = silentArea.getPriority();
         }
 
         // sorry jasmine  (´・ω・`)
@@ -50,14 +51,18 @@ public class MeretClient implements ClientModInitializer {
         }
 
         var tag = tagAreaPair.get().getFirst();
+        var area = tagAreaPair.get().getSecond();
         var song = songRegistry.getOrCreateTag(tag).getRandomElement(player.getRandom());
 
         if (song.isEmpty()) {
             return null;
         }
 
-        var area = tagAreaPair.get().getSecond();
         var areaDelay = area.getOrDefault(Meret.AREA_MUSIC_DELAY_DATA_COMPONENT, DEFAULT_DELAY);
+
+        if (silentArea != null && area.getPriority() < silentPriority) {
+            return null;
+        }
 
         return new Music(song.get().value().soundEvent(), areaDelay.minDelay, areaDelay.maxDelay, false);
     }
