@@ -13,7 +13,7 @@ public class Meret implements ModInitializer {
     public static final String MOD_ID = "meret";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static final AreaDataComponentType<AreaMusicDelay> AREA_MUSIC_DELAY_DATA_COMPONENT = AreaDataComponentTypeRegistry.register(id("area_delay"), AreaMusicDelay::new);
+    public static final AreaDataComponentType<AreaMusicComponent> AREA_MUSIC_DATA_COMPONENT = AreaDataComponentTypeRegistry.registerTracking(id("area_music"), AreaMusicComponent::new);
 
     public static ResourceLocation id(String id) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, id);
