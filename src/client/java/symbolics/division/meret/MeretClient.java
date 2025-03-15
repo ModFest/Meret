@@ -20,6 +20,7 @@ public class MeretClient implements ClientModInitializer {
         if (player == null) return null;
 
         AreaSavedData areaSavedData = AreaClientData.getClientLevelData();
+        if (areaSavedData == null) return null;
         var optionalArea = areaSavedData.findTrackedAreasContaining(player).stream()
             .filter(area -> area.has(Meret.AREA_MUSIC_DATA_COMPONENT))
             .max(Comparator.comparingInt(Area::getPriority));
